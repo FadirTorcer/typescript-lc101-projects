@@ -1,7 +1,7 @@
 // URL for the instructions: 
 // https://education.launchcode.org/intro-to-professional-web-dev/chapters/typescript/exercises.html 
 
-
+import { SpaceLocation } from './SpaceLocation';
 // Part 1: Declare (5) Variables With Type
 // let spacecraftName:	string = 'Determination';
 // let speedMph: number = 17500;
@@ -46,13 +46,16 @@ class Spacecraft {
         this.speedMph = 17500;
     }
 
-    function getDaysToLocation (kilometersAway: number): number {
+    getDaysToLocation (kilometersAway: number): number {
         let milesAway: number = kilometersAway * this.milesPerKilometer;
         let hoursToLocation: number = milesAway / this.speedMph;
         let daysToLocation: number = hoursToLocation / 24;
         return daysToLocation;
     }
 
+    printDaysToLocation(location: SpaceLocation) {
+        console.log(`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
+    }
 }
 
 
@@ -62,8 +65,8 @@ let spaceShuttle = new Spacecraft('Determination', 17500);
 
 // Move your output statements from part 3 here. Update the template literals use the
 // instance of the class.
-console.log(`It will take ${spaceShuttle.name} ${spaceShuttle.getDaysToLocation(kilometersToMars).toFixed(2)} days to reach Mars.`);
-console.log(`It will take ${spaceShuttle.name} ${spaceShuttle.getDaysToLocation(kilometersToTheMoon).toFixed(2)} days to reach the Moon.`);
+/* console.log(`It will take ${spaceShuttle.name} ${spaceShuttle.getDaysToLocation(kilometersToMars).toFixed(2)} days to reach Mars.`);
+console.log(`It will take ${spaceShuttle.name} ${spaceShuttle.getDaysToLocation(kilometersToTheMoon).toFixed(2)} days to reach the Moon.`); */
 
 
 // Part 5: Export and Import the SpaceLocation Class
@@ -71,5 +74,6 @@ console.log(`It will take ${spaceShuttle.name} ${spaceShuttle.getDaysToLocation(
 
 
 // Add the printDaysToLocation function to the Spacecraft class.
-
-// Paste in the code from step 6 here:
+spaceShuttle.printDaysToLocation(new SpaceLocation('Mars', kilometersToMars));
+spaceShuttle.printDaysToLocation(new SpaceLocation('the Moon', kilometersToTheMoon));
+// Paste in the code from step 6 here: ??
